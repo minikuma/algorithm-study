@@ -10,8 +10,49 @@ public class GenomicRangeQuery {
         P[2] = 0    Q[2] = 6
      */
         int M = P.length;
-        int[] result = new int[M];
+        int size = S.length();
 
+        int[] result = new int[M];
+        int[] a = new int[size + 1];
+        int[] c = new int[size + 1];
+        int[] g = new int[size + 1];
+
+        for (int i = 0; i < size; i++) {
+            if (S.charAt(i) == 'A') {
+                a[i + 1] = a[i] + 1;
+                c[i + 1] = c[i];
+                g[i + 1] = g[i];
+            } else if (S.charAt(i) == 'C') {
+                a[i + 1] = a[i];
+                c[i + 1] = c[i] + 1;
+                g[i + 1] = g[i];
+            } else if (S.charAt(i) == 'G') {
+                a[i + 1] = a[i];
+                c[i + 1] = c[i];
+                g[i + 1] = g[i] + 1;
+            } else {
+                a[i + 1] = a[i];
+                c[i + 1] = c[i];
+                g[i + 1] = g[i];
+            }
+        }
+
+        for (int j = 0; j < M; j++) {
+            int start = P[j];
+            int end = Q[j] + 1;
+
+            if (a[end] - a[start] > 0) {
+                result[j] = 1;
+            } else if (c[end] - c[start] > 0) {
+                result[j] = 2;
+            } else if (g[end] - g[start] > 0) {
+                result[j] = 3;
+            } else {
+                result[j] = 4;
+            }
+        }
+        return result;
+    /*
         for (int i = 0; i < M; i++) {
             String str = S.substring(P[i], Q[i] + 1);
             if (str.contains("A")) {
@@ -27,8 +68,18 @@ public class GenomicRangeQuery {
                     }
                 }
             }
+            if (str.contains("A")) {
+                result[i] = 1;
+            } else if (str.contains("C")) {
+                result[i] = 2;
+            } else if (str.contains("G")) {
+                result[i] = 3;
+            } else {
+                result[i] = 4;
+            }
         }
         return result;
+*/
 //
 //        for (int i = 0; i < P.length; i++) {
 //            System.out.println("(" + P[i] + "," + Q[i] + ")");
