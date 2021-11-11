@@ -1,5 +1,7 @@
 package me.minikuma.lessons6;
 
+import java.util.Arrays;
+
 public class NumberOfDiscIntersections {
     public int solution(int[] A) {
         /*
@@ -10,18 +12,32 @@ public class NumberOfDiscIntersections {
             r - r' (반지름 차)
             r - r' <= d <= r + r'
          */
-        int interCount = 0;
-        for (int i = 0; i < A.length; i++) {
-            for (int j = i + 1; j < A.length; j++) {
-                int d = j - i;
-                int sum = A[i] + A[j];
-                int sub = A[j] - A[i];
-                if (sub >= d && sum <= d) {
-                    interCount++;
-                }
+
+
+        int N = A.length;
+        long[] upper = new long[N]; // 반지름의 합
+        long[] lower = new long[N]; // 반지름의 차
+
+        for (int i = 0; i < N; i++) {
+            lower[i] = i - (long) A[i];
+            upper[i] = i + (long) A[i];
+        }
+
+        Arrays.sort(lower);
+        Arrays.sort(upper);
+
+        int interSections = 0;
+        int j = 0;
+
+        for (int i = 0; i < N; i++) {
+            while (j < N && upper[i] >= lower[j]) {
+                interSections += j;
+                interSections -= i;
+                j++;
             }
         }
-        return interCount;
+        if (interSections > 10000000) return -1;
+        return interSections;
     }
 
     public static void main(String[] args) {
