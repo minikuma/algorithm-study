@@ -1,8 +1,5 @@
 package me.minikuma.lessons8.v2;
 
-import me.minikuma.lessons8.v1.EquiLeaderV1;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,11 +14,13 @@ public class EquiLeaderV2 {
 
         int half = A.length / 2;
         int leader = 0;
+        int leaderCount = 0;
 
         for (Integer key : hMap.keySet()) {
             int temp = hMap.get(key);
             if (temp > half) {
                 leader = key; // leader 숫자
+                leaderCount = temp;
             }
         }
 
@@ -41,14 +40,14 @@ public class EquiLeaderV2 {
         int count = 0;
         int leftCount = 0;
         int leftLength = 0;
-        int rightCount = hMap.get(leader); // Leader 노출 횟수
-        int rightLength = A.length;
+        int rightCount = leaderCount; // Leader 노출 횟수 = 4
+        int rightLength = A.length; // 6
 
         for (int i = 0; i < counter.length; i++) {
-            leftCount += counter[i];
-            rightCount -= counter[i];
-            leftLength++;
-            rightLength--;
+            leftCount += counter[i]; // 1
+            rightCount -= counter[i]; // 3
+            leftLength++; // 1
+            rightLength--; //4
 
             if ((leftCount > leftLength / 2) && (rightCount > rightLength / 2)) {
                 count++;
