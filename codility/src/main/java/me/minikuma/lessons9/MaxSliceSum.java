@@ -7,20 +7,34 @@ package me.minikuma.lessons9;
 
 public class MaxSliceSum {
     public int solution(int[] A) {
-
-        int mSum = A[0]; // 3
+        int curSum = 0;
+        int maxSum = A[0];
 
         if (A.length < 2) {
-            return mSum;
+            return maxSum;
         }
 
-        int sum = A[0];
-
-        for (int i = 1; i < A.length; i++) {
-            sum = Math.max(A[i], sum + A[i]);
-            mSum = Math.max(mSum, sum);
+        for (int i = 0; i < A.length; i++) {
+            curSum = Math.max(curSum + A[i], A[i]); // (*) 카데인 알고리즘 핵심
+            maxSum = Math.max(curSum, maxSum);
         }
-        return mSum;
+
+        return maxSum;
+
+//        int mSum = A[0]; // 3
+//
+//        if (A.length < 2) {
+//            return mSum;
+//        }
+//
+//        int sum = A[0];
+//
+//        for (int i = 1; i < A.length; i++) {
+//            sum = Math.max(A[i], sum + A[i]);
+//            mSum = Math.max(mSum, sum);
+//        }
+//        return mSum;
+
     }
 
     public static void main(String[] args) {
