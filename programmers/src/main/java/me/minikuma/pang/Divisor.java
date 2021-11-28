@@ -1,24 +1,33 @@
 package me.minikuma.pang;
 
-import java.util.Arrays;
+import java.util.*;
+
 /*
     효율성 해결 해야 함
  */
 public class Divisor {
     public int[] solution(int[] numbers) {
-        int n = numbers.length;
-        int[] answer = new int[n];
 
-        for (int i = 0; i < n; i++) {
-            answer[i] = numbers[0];
-        }
-        for (int i = 2; i <= n; i++) {
-            for (int j = i; j <= n; j = j + (j / i)) {
+        // O (sqrt N)
+        int size = numbers.length;
+        List<Integer> divData = new ArrayList<>();
+        Map<Integer, Object> maps = new HashMap<>();
+
+        for (int j = 1; j <= size; j++) {
+            int sq = (int) Math.sqrt(j);
+            for (int i = 1; i <= sq; i++) {
                 if (j % i == 0) {
-                    answer[j - 1] += numbers[i - 1];
+                    divData.add(i);
+                    if (j / i != i) {
+                        divData.add(j / i);
+                    }
                 }
             }
         }
+
+//        lists.sort(Comparator.naturalOrder());
+
+        System.out.println(maps.toString());
 
 //        for (int i = 1; i <= n; i++) {
 //            for (int j = 1; j <= i; j++) {
@@ -27,12 +36,12 @@ public class Divisor {
 //                }
 //            }
 //        }
-        return answer;
+        return null;
     }
 
 
     public static void main(String[] args) {
-        int[] a1 = {5, 8, 2, 7, 6, 1};
+        int[] a1 = {5, 8, 2, 7, 6, 1}; // 6
         int[] a2 = {3, 5, 9};
 
         Divisor d = new Divisor();
