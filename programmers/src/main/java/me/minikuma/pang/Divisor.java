@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class Divisor {
     public int[] solution(int[] numbers) {
-
         // O (sqrt N)
         int size = numbers.length;
         List<Integer> divData = new ArrayList<>();
@@ -27,7 +26,7 @@ public class Divisor {
 
 //        lists.sort(Comparator.naturalOrder());
 
-        System.out.println(maps.toString());
+        System.out.println(divData);
 
 //        for (int i = 1; i <= n; i++) {
 //            for (int j = 1; j <= i; j++) {
@@ -38,8 +37,6 @@ public class Divisor {
 //        }
         return null;
     }
-
-
     public static void main(String[] args) {
         int[] a1 = {5, 8, 2, 7, 6, 1}; // 6
         int[] a2 = {3, 5, 9};
