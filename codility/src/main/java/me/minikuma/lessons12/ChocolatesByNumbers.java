@@ -1,5 +1,10 @@
 package me.minikuma.lessons12;
 
+/**
+ * 최대 공약수 (유클리드 호제법)
+ *  - 재귀함수
+ */
+
 public class ChocolatesByNumbers {
 
     public int solution(int N, int M) {
