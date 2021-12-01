@@ -19,10 +19,9 @@ public class CountDistinctSlices {
                 count += (end - front + 1);
                 end++;
             }
-        }
-
-        if (count >= 1000000000) {
-            return 1000000000;
+            if (count > 1000000000) {
+                return 1000000000;
+            }
         }
         return count;
     }
