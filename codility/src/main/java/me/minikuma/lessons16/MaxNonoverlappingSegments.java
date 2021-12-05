@@ -4,7 +4,12 @@ public class MaxNonoverlappingSegments {
     public int solution(int[] A, int[] B) {
         int n = A.length;
         int count = 1; // 최초 범위도 포함되어야 한다.
-        int currenctEnd = B[0];
+
+        if (n < 1) {
+            return 0;
+        }
+
+        int currenctEnd = B[0]; // 빈배열이 들어올수 있어서 조심해야 함!
 
         for (int i = 1; i < n; i++) {
             if (A[i] > currenctEnd) {
