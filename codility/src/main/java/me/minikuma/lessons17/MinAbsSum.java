@@ -37,7 +37,7 @@ public class MinAbsSum {
                     } else if (j >= i && dp[j - i] > 0) {
                         dp[j] = dp[j - i] - 1;
                     }
-                 }
+                }
             }
         }
 
