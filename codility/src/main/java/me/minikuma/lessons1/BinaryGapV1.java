@@ -11,8 +11,11 @@ public class BinaryGapV1 {
     public int solution(int N) {
         // 이진수로 변경
         String bi = Integer.toBinaryString(N);
-        System.out.println("이진수로 변경된 수: " + bi);
+        System.out.println(N + " : 이진수로 변경된 수: " + bi);
+
+        // array 로 변경
         char[] toCharArray = bi.toCharArray();
+
         Stack<Integer> stack = new Stack<>();
 
         // 10000010001
@@ -22,10 +25,11 @@ public class BinaryGapV1 {
             }
         }
         // stack 확인
-        System.out.println("stack data : " + stack.toString());
+        System.out.println("stack data : " + stack);
 
         int maxVal = 0;
 
+        // 1 이 한번만 등장함 -> 10000000 이런 케이스 처리
         if (stack.size() < 2) {
             return 0;
         }
@@ -41,12 +45,15 @@ public class BinaryGapV1 {
         int n1 = 1041;
         int n2 = 32;
         int n3 = 10;
+        int n4 = 2;
         BinaryGapV1 bg = new BinaryGapV1();
         int res1 = bg.solution(n1);
         int res2 = bg.solution(n2);
         int res3 = bg.solution(n3);
+        int res4 = bg.solution(n4);
         System.out.println("res1 = " + res1);
         System.out.println("res2 = " + res2);
         System.out.println("res3 = " + res3);
+        System.out.println("res4 = " + res4);
     }
 }
