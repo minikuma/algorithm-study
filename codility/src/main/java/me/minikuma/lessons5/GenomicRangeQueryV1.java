@@ -14,25 +14,39 @@ public class GenomicRangeQueryV1 {
         maps.put('T', 4);
 
         System.out.println("maps = " + maps);
+        int m = P.length;
+        int size = S.length();
 
         // O (n * m) - time out
-        int left = 0;
-        int right = 0;
-        int min = Integer.MAX_VALUE;
-        int[] res = new int[P.length];
+        int[] res = new int[m];
+        int[] w = new int[size];
 
-        for (int i = 0; i < P.length; i++) {
-            left = P[i]; // 2
-            right = Q[i]; // 4
+        for (int i = 0; i < S.length(); i++) {
+            w[i] = maps.get(S.charAt(i));
+        }
+
+        System.out.println("w = " + Arrays.toString(w));
+
+        for (int i = 0; i < m; i++) {
+            int left = P[i]; // 2
+            int right = Q[i]; // 4
             // 0 1  2 3 4  5 6
             // C A [G C C] T A
 
-            while (left <= right) {
-                min = Math.min(min, maps.get(S.charAt(right)));
-                right--;
-            }
-            res[i] = min;
-            min = Integer.MAX_VALUE;
+            int[] range = Arrays.copyOfRange(w, left, right + 1);
+            Arrays.sort(range);
+            res[i] = range[0];
+
+//            for (int j = left; j <= right; j++) {
+//
+//            }
+//
+//            while (left <= right) {
+//                min = Math.min(min, maps.get(S.charAt(right)));
+//                right--;
+//            }
+//            res[i] = min;
+//            min = Integer.MAX_VALUE;
         }
         return res;
     }
