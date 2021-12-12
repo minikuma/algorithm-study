@@ -26,6 +26,7 @@ public class Fish {
                 }
             }
         }
+        //([4,3,2,1,5],[1,1,1,1,1]) 이런 케이스 때문에 stack size를 더해준다.
         return stack.size() + alive;
     }
 
