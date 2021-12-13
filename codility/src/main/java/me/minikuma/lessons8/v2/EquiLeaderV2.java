@@ -20,7 +20,7 @@ public class EquiLeaderV2 {
             int temp = hMap.get(key);
             if (temp > half) {
                 leader = key; // leader 숫자
-                leaderCount = temp;
+                    leaderCount = temp;
             }
         }
 

@@ -20,28 +20,20 @@ public class MaxProfit {
             }
         }
 
-        int min = A[0]; //5
-        int profit = A[1] - A[0]; // 1
         //N is an integer within the range [0..400,000]
         // 배열이 빈 배열일수도 있다.
 
-        if (A.length < 2) {
-            return 0;
-        }
+        if (A.length < 2) return 0;
+
+        int currentMin = A[0]; //5
+        int max = A[1] - A[0]; // 1
 
         for (int i = 1; i < A.length; i++) {
-            if (A[i] < min) {
-                min = A[i];
-            } else {
-                profit = Math.max(profit, A[i] - min);
-            }
+            currentMin = Math.min(currentMin, A[i]);
+            max = Math.max(max, A[i] - currentMin);
         }
 
-        if (profit < 0) {
-            return 0;
-        }
-
-        return profit;
+        return max;
     }
 
     public static void main(String[] args) {
